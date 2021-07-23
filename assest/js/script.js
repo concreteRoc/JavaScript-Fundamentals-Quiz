@@ -24,45 +24,37 @@
 // THEN I can save my inittials and my score */
 
 
-var startQuizEL = document.getElementById("start-Quiz")
-
-var timeRemaining = 300;
-
-startQuizEL.addEventListener("click", function setTime() {
-    // Sets interval in variable
-    var timerInterval = setInterval(function() {
-        timeRemaining--;
-        startQuizEL.textContent = timeRemaining + " Time Remaining.";
-        console.log('interval')
-
-        if(timeRemaining === 0) {
-            // Stops execution of action at set interval
-            clearInterval(timerInterval);
-            alert("You have run out of time!");
-        }    
-    }, 1000);
-    
-})
-
-
-// startQuizEL.addEventListener("click", function startTimer(duration, display) {
-//     var timer = duration, minutes, seconds;
-//     setInterval(function () {
-//         minutes = parseInt(timer / 60, 10);
-//         seconds = parseInt(timer % 60, 10);
-
-//         minutes = minutes < 10 ? "0" + minutes : minutes;
-//         seconds = seconds < 10 ? "0" + seconds : seconds;
-
-//         display.textContent = minutes + ":" + seconds;
-
-//         if (--timer < 0) {
-//             timer = duration;
-//         }
-//     }, 1000);
-// })
 
 
 
+// This is the array that will hold the questions.
+// Inside the objects of the array the options are in an array because we want to select just one option and not everything as a one string.
 
+var questionsAsked = [
+    {
+        question: "Inside which HTML element do we put the JavaScript?",
+        options: ["<scripting>", "<script>", "<js>", "<javascript>"],
+        answer: "<script>"
+    },
+    {
+        question: "How does a FOR loop start?",
+        options: ["for (i =0; i <= 5; i++)", "for i = 1 to 5", "for (i <= 5; i++)", "for (i = 0; i <= 5)"],
+        answer: "for (i =0; i <= 5; i++)"
+    },
+    {
+        question: "How can you add a comment in a JavaScript?",
+        options: ["<!--This is a comment-->", "'This is a comment", "!!This is a comment", "//This is a comment  "],
+        answer: "//This is a comment  "
+    },
+    {
+        question: "How do you declare a JavaScript variable?",
+        options: ["var carName;", "variable carName;", "v carName;", "vb = carName"],
+        answer: "var carName"
+    },
+    {
+        question: "How do you round the number 7.25, to the nearest integer?",
+        options: ["math.rnd(7.25)", "round(7.25)", "Math.round(7.25)", "rnd(7.25)"],
+        answer: "Math.round(7.25)"
+    },
+];
 
