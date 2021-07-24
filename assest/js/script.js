@@ -25,7 +25,10 @@
 
 
 
-
+// defined variables
+var questionsIndex = 0;
+var numberCorrect = 0;
+var timer = 100;
 
 // This is the array that will hold the questions.
 // Inside the objects of the array the options are in an array because we want to select just one option and not everything as a one string.
@@ -58,3 +61,59 @@ var questionsAsked = [
     },
 ];
 
+
+// This function will assign each button to its particular answer choice
+function renderQuestions() {
+    questionsTextbox.textContent = questionsAsked[questionsIndex].question;
+    choiceA.textContent = questionsAsked[questionsIndex].options[0];
+    choiceB.textContent = questionsAsked[questionsIndex].options[1];
+    choiceC.textContent = questionsAsked[questionsIndex].options[2];
+    choiceD.textContent = questionsAsked[questionsIndex].options[3];
+}
+
+// This function will check if your answer and if it's incorrect time is subtracted.
+function checkChoice (choice) {
+
+    if (questionsAsked[questionsIndex].answer === questionsAsked[questionsIndex].options[choice]) {
+        choiceReview.textContent = "Thats Right!"
+        numberCorrect++
+    } else {
+        timer -= 10;
+        timeCount.textContent = timer;
+        choiceReview.textContent = 'WRONG! The correct answer is ${questionsAsked[questionsIndex].answer}, and you lose 10 seconds.';
+    }
+
+    questionsIndex++
+
+    if (questionsIndex < questionsAsked.length) {
+        renderQuestions();
+    } else {
+        endGame();
+    }
+}
+
+// set of functions that incorporates the checkChoice function with each possible selected answer choice
+function optionA () { checkChoice(0); }
+function optionB () { checkChoice(1); }
+function optionC () { checkChoice(2); }
+function optionD () { checkChoice(3); }
+
+// each individual button is assigned its own function on click which also triggers the checkChoice function
+choiceA.addEventListener("click", optionA);
+choiceB.addEventListener("click", optionB);
+choiceC.addEventListener("click", optionC);
+choiceD.addEventListener("click", optionD);
+
+// This function will starts the quiz and timer
+function startQuiz () {
+    var timerSet = setInterval(function() {
+        timer--;
+        timeCount.textContent = timer;
+        if(timer <= 0) {
+        clearInterval(timerSet);
+        if(questionsIndex < questionsAsked.length -1) {
+            endGame();
+        }
+        }
+    },1000);
+}

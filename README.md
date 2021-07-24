@@ -1,7 +1,6 @@
-# JavaScript-Fundamentals-Quiz
----
+# JavaScript Fundamentals Quiz
 
-### Creating a short quiz on the fundamentals of Vanilla JS, while using HTML, CSS, and JS.
+#### Creating a short quiz on the fundamentals of Vanilla JS, while using HTML, CSS, and JS.
  
 ---
  
