@@ -104,7 +104,7 @@ choiceB.addEventListener("click", optionB);
 choiceC.addEventListener("click", optionC);
 choiceD.addEventListener("click", optionD);
 
-// This function will starts the quiz and timer
+// This function will start the quiz and timer
 function startQuiz () {
     var timerSet = setInterval(function() {
         timer--;
@@ -116,4 +116,14 @@ function startQuiz () {
         }
         }
     },1000);
+
+    startHighscore.style.display ="none";
+    startDiv.style.display = "none";
+    quizTextbox.style.display ="block";
+    choiceA.style.display = "block";
+    choiceB.style.display = "block";
+    choiceC.style.display = "block";
+    choiceD.style.display = "block";
+    header.style.opacity = "1";
+    renderQuestions();
 }
