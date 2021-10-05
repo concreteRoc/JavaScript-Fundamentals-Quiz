@@ -1,24 +1,28 @@
 # JavaScript Fundamentals Quiz
 
-#### Creating a short quiz on the fundamentals of Vanilla JS, while using HTML, CSS, and JS.
- 
----
+Test your knowledge! You can become a javascript guru today. This short quiz will test your knowledge on the fundamentals of Vanilla JavaScript.
  
 ## Table of Contents
- * [Screen Shot](#screen-shot) 
- * [File Architecture](#file-architecture)
- * [Click here to visit the site!]()
+* [Usage](#Usage)
+* [Test](#Test)
+* [Questions](#Questions)
 
----
- 
-## Screen Shot
----
- 
-## File Architecture
-<details><summary><b>Click To View</b></summary>
- 
-</details>
----
- 
+
+
+## Usage
+Once you load the page hit the start button to begin! 
+
+## Test
+![Screenshot of quiz](assest/images/Screenshot4.jpg "screenshot of quiz")
+
+## Questions
+Do you have questions? Contact me here:
+
+* [Github](https://github.com/jameleggleston)
+* [Email](jamel.eggleston@gmail.com)
+
+Here is a link to the [website](https://jameleggleston.github.io/JavaScript-Fundamentals-Quiz/)
+
+
 [Back to Top](#javascript-fundamentals-quiz)
  
