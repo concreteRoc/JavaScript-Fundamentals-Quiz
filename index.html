@@ -1,45 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Quiz</title>
+<html>
+    <head>
+        <title>Coding Quiz</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./assest/css/style.css">
+    </head>
 
-  </head>
-  <body>
-    <!-- highscore button that will display saved scores and initials. I may move this -->
-    <button>Highscores</button>
+    <body>
+        <!-- highscore button that displays saved scores and initials -->
+        <button class ="highscores-section" id = "start-highscore">Highscores</button>
 
-    <!-- The header will contain timer text and highscore button that is functional while quiz is running. I may move this out of the header -->
-    <header id="header">
-     
-    </header>
+        <!-- header that contains timer text and highscore button that is functional while quiz is running -->
+        <header id="header">
+            <button class = "highscores-section" id = "quiz-highscore">Highscores</button>
+            <div class="timer-textbox">
+            <div class="timer-count">100</div>
+            <h3 class="secondsTextbox">Seconds remaining</h3>
+            </div>
+        </header>
 
-    <main id="main">
-      <!-- This div will display when page is initially loads -->
-      <div class ="start-div">
+        <main id="main">
+            <!-- div that is displayed when page is first booted up -->
+            <div class ="start-div">
+                <h1>Coding Quiz</h1>
+                <p>This is a short quiz reviewing some of the things you've learned in Javascript. Let's see how well you do! Press Start to begin!</p>
+                <button id = "startButton">Start</button>
+            </div>
 
-      </div>
+                <!-- div that displays quiz questions and answer choices -->
+            <div class="quiz-textbox">
+                <h1 id="quiz-title">Coding Quiz</h1>
+                <p id = "questionBox"></p>
+                <button class = "option-style" id = "choiceA"></button>
+                <button class = "option-style" id = "choiceB"></button>
+                <button class = "option-style" id = "choiceC"></button>
+                <button class = "option-style" id = "choiceD"></button>
+                <!-- line that displays wrong or correct feedback -->
+                <p id = "choiceReview"></p>
+            </div>
 
-      <!-- div that displays quiz questions and answer choices -->
-      <div class="quiz-textbox">
+            <!-- form that contains initials input and submit button -->
+            <form id="form">
+                <h1 id="scoreText"></h1>
+                <fieldset>
+                    <legend>User entry</legend>
+                    <label for = "initials" id = "initials-label">Enter Initials Here:</label><br>
+                    <input type = "text" id = "initials" name = "initials"><br>
+                    <input class = "option-style" type ="submit" value="submit" id="submit-button">
+                </fieldset>
+                <!-- displays message when initial input is empty -->
+                <h3 class="submit-message"></h3>
+            </form>
 
-      </div>
+            <!-- div that displays highscores with saved scores and intials -->
+            <div id="highscores">
+                <button type = "button" id = "go-back" class = "option-style">Go Back</button>
+                <button type = "button" id = "clear" class = "option-style">Clear highscores</button>
+                <div id="highscores-section"></div>
+                <!-- message displayed when clear button is pressed -->
+                <p id ="clearedText">Highscores cleared!</p>
+            </div>
 
-      <!-- form that contains initials input and submit button -->
-      <form id="form">
-             
-      </form>
-
-      <!-- div that displays highscores with saved scores and intials -->
-      <div id="highscores">
-             
-      </div>
-    </main>
-    <footer>
-      <p>&copy; 2021 Jamel Eggleston </p>
-    </footer>
-    <script src="./assest/js/script.js"></script>
-  </body>
+        </main>
+        <footer>
+          <p>&copy; 2021 Jamel Eggleston </p>
+        </footer>
+        <script src="./assest/js/script.js"></script>
+     </body>
 </html>

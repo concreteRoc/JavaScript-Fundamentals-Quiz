@@ -1,28 +1,28 @@
-
-// 1. create a start button to start the quiz 
-//     - link to html 
-//     - query selector
-
-// 2. create a function that is a timer (set timeout)
-// 2.b. add variable to track time 
-// 3. creating quiz questions (array )
-        // example: questions = [{question_1: 'qeustion', choice_1: 'choice', choice_2: 'choice', answer: 'your answer' }, {question_2: 'qeustion', choice_1: 'choice', choice_2: 'choice', answer: 'your answer' }, ]
-        // look up Object mapping (key value pairs )
-// 4. create a loop to cycle through question 
-// 5. function to check if the users guess matches the answer (if statement)
-// 5. b. if the answer is wrong subtract (number) from the timer
-
-
-
-// 6. when the user has been told if there answer is wrong or right display the next question  
-
-// 7. we either needs a function or to include something in the for loop to determine if all questions have been answered or if the timer is 0
-
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my inittials and my score */
-
+// Referencing html tags with id using queryselector
+var startButton = document.querySelector("#startButton");
+var timeCount = document.querySelector(".timer-count");
+var questionsTextbox = document.querySelector("#questionBox");
+var choiceReview = document.querySelector("#choiceReview");
+var quizTextbox = document.querySelector(".quiz-textbox");
+var header = document.querySelector("#header");
+var form = document.querySelector("#form");
+var submitButton = document.querySelector("#submit-button");
+var scoretext = document.querySelector("#scoreText");
+var messageBox = document.querySelector(".submit-message")
+var highscores = document.querySelector("#highscores");
+var userInitials = document.querySelector("#initials");
+var startDiv = document.querySelector(".start-div")
+var goBack = document.querySelector("#go-back");
+var clearbtn = document.querySelector("#clear");
+var choiceA = document.querySelector("#choiceA");
+var choiceB = document.querySelector("#choiceB");
+var choiceC = document.querySelector("#choiceC");
+var choiceD = document.querySelector("#choiceD");
+var clearedMessage = document.querySelector("#clearedText");
+var highscoreList = document.querySelector("#highscores-section");
+var startHighscore = document.querySelector("#start-highscore");
+var quizHighscore = document.querySelector("#quiz-highscore");
+var timerDiv = document.querySelector(".timer-textbox");
 
 
 // defined variables
@@ -32,6 +32,7 @@ var timer = 100;
 
 // This is the array that will hold the questions.
 // Inside the objects of the array the options are in an array because we want to select just one option and not everything as a one string.
+
 
 var questionsAsked = [
     {
@@ -51,7 +52,7 @@ var questionsAsked = [
     },
     {
         question: "How do you declare a JavaScript variable?",
-        options: ["var carName;", "variable carName;", "v carName;", "vb = carName"],
+        options: ["var carName", "variable carName", "v carName", "vb = carName"],
         answer: "var carName"
     },
     {
@@ -61,8 +62,7 @@ var questionsAsked = [
     },
 ];
 
-
-// This function will assign each button to its particular answer choice
+// This function will assigns each button to its particular answer choice.
 function renderQuestions() {
     questionsTextbox.textContent = questionsAsked[questionsIndex].question;
     choiceA.textContent = questionsAsked[questionsIndex].options[0];
@@ -71,16 +71,16 @@ function renderQuestions() {
     choiceD.textContent = questionsAsked[questionsIndex].options[3];
 }
 
-// This function will check if your answer and if it's incorrect time is subtracted.
+// function to check answer picked and if incorrect time is deduced
 function checkChoice (choice) {
 
     if (questionsAsked[questionsIndex].answer === questionsAsked[questionsIndex].options[choice]) {
-        choiceReview.textContent = "Thats Right!"
+        choiceReview.textContent = "Correct!"
         numberCorrect++
     } else {
         timer -= 10;
         timeCount.textContent = timer;
-        choiceReview.textContent = 'WRONG! The correct answer is ${questionsAsked[questionsIndex].answer}, and you lose 10 seconds.';
+        choiceReview.textContent = `Wrong!!!, the correct answer is ${questionsAsked[questionsIndex].answer}`;
     }
 
     questionsIndex++
@@ -92,13 +92,13 @@ function checkChoice (choice) {
     }
 }
 
-// set of functions that incorporates the checkChoice function with each possible selected answer choice
+// Set of functions that incorporates the checkChoice function with each possible selected answer choice
 function optionA () { checkChoice(0); }
 function optionB () { checkChoice(1); }
 function optionC () { checkChoice(2); }
 function optionD () { checkChoice(3); }
 
-// each individual button is assigned its own function on click which also triggers the checkChoice function
+// Each individual button is assigned its own function on click which also triggers the checkChoice function.
 choiceA.addEventListener("click", optionA);
 choiceB.addEventListener("click", optionB);
 choiceC.addEventListener("click", optionC);
@@ -125,5 +125,108 @@ function startQuiz () {
     choiceC.style.display = "block";
     choiceD.style.display = "block";
     header.style.opacity = "1";
-    renderQuestions();
+renderQuestions();
 }
+
+// This function will end game and display final score and the form that allows initials input.
+function endGame () {
+header.style.opacity = "0";
+quizTextbox.style.display = "none";
+form.style.display = "block";
+scoretext.textContent = `Your final score is ${numberCorrect}`;
+}
+startButton.addEventListener("click", startQuiz);
+
+// This function will assign a class to messageBox depending on whether or not there is an input, this class makes text red if no input is given.
+function displayMessage (type, message) {
+    messageBox.textContent = message;
+    messageBox.setAttribute("class", type);
+}
+
+// This function will store scores and initials in an array and stringified in order to be placed in local storage
+function storeScores (event) {
+    event.preventDefault();
+
+    if(userInitials.value === "") {
+        displayMessage("error", "Please enter your intials in order to continue");
+         return;
+    }
+
+    form.style.display = "none";
+    highscores.style.display = "block";
+
+    var savedScores = localStorage.getItem("highscore");
+    var scoreArray;
+    
+
+    if (savedScores === null) {
+        scoreArray =[];
+    } else {
+        scoreArray = JSON.parse(savedScores);
+    }
+
+    var savedScores = {
+        intials: userInitials.value,
+        score: numberCorrect
+    };
+
+    scoreArray.push(savedScores);
+
+    scoreArrayString = JSON.stringify(scoreArray);
+    localStorage.setItem("highscore", scoreArrayString);
+
+    getScore();
+};
+
+var i = 0;
+// This function will display saved scores in order by parsing the stringified content from local storage
+function getScore () {
+   savedScores = localStorage.getItem("highscore");
+
+   if(savedScores === null) {
+       return;
+   }
+
+   var storedScores = JSON.parse(savedScores);
+
+   for (; i < storedScores.length; i++) {
+       var newScore = document.createElement("p");
+       newScore.textContent = `${storedScores[i].intials}: ${storedScores[i].score}`;
+       highscoreList.appendChild(newScore);
+   }
+
+}
+
+// Event listener for submit button that displays the saved scores adn initials
+submitButton.addEventListener("click", function(event) {
+    storeScores(event);
+});
+
+// Event listener for go back button that returns to starting div and reloads the page
+goBack.addEventListener("click", function() {
+    highscores.style.display = "none";
+    startDiv.style.display = "block";
+    window.location.reload();
+})
+
+// Event listener for clear button in order to delete saved items in local storage
+clearbtn.addEventListener("click", function() {
+    window.localStorage.removeItem("highscore");
+    clearedMessage.style.display = "block";
+    highscoreList.innerHTML = "";
+})
+
+//Event listener for highscore button in the starting div that showcases saved scores and initials
+startHighscore.addEventListener("click", function() {
+    getScore();
+    highscores.style.display = "block";
+    startDiv.style.display = "none";
+});
+
+// Event listener for highscore button while the quiz is running that also displays the saved scores and initials
+quizHighscore.addEventListener("click", function() {
+    getScore();
+    highscores.style.display = "block";
+    quizTextbox.style.display = "none";
+    timerDiv.style.display = "none";
+});

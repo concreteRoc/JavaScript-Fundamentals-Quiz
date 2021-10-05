@@ -1,0 +1,140 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+*{
+    font-family:'Shadows Into Light';
+    font-size: 25px; 
+}
+/* header contains timer and timer is hidden until start button is pressed */
+header {
+    opacity: 0;
+}
+/* set background color to page */
+body {
+    background-color: rgb(184, 170, 170);
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    padding: 200px;
+
+}
+/* aligns timer text to the top right of the document */
+.timer-textbox {
+    vertical-align: text-top;
+    display: inline;
+    float: right;
+}
+/* highscore button is set to top left of document */
+.highscores-section {
+    display: inline;
+    float: left;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color:rgb(173, 143, 255);
+}
+
+.highscores-section:hover{
+    cursor: pointer;
+    color:aquamarine;
+
+}
+
+.start-div {
+    margin-top: 75px;
+}
+
+.start-div h1{
+  font-size:60px;  
+}
+
+.quiz-textbox h1{
+    font-size: 60px;
+}
+
+#startButton {
+    width: 75px;
+    height: 55px;
+    padding: 5px;
+    background-color: rgb(173, 143, 255);
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* when button is hovered over the color gets brighter */
+#startButton:hover {
+    filter: brightness(120%);
+    background-color: aquamarine;
+}
+
+.option-style {
+    margin-bottom: 5px;
+    background-color: rgb(173, 143, 255);
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.option-style:hover {
+    filter: brightness(120%);
+    background-color: aquamarine;
+}
+
+.quiz-textbox {
+    display: none;
+    margin-top: 75px;
+}
+/* flex box is used to get each displayed div in the center of the document */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset {
+    padding: 30px;
+    border-radius: 10px;
+}
+
+#initials {
+    margin-top: 10px;
+}
+
+#submit-button {
+    margin-top: 10px;
+}
+
+#choiceA {
+    display: none;
+}
+
+#choiceB {
+    display: none;
+}
+
+#choiceC {
+    display: none;
+}
+
+#choiceD {
+    display: none;
+}
+
+#form {
+    display: none;
+    margin-top: 75px;
+}
+
+#highscores {
+    display: none;
+    margin-top: 75px;
+}
+
+#clearedText {
+    display: none;
+}
+/* if no initials are inputted then the text box displays an error message with red text */
+.error {
+    color: red;
+}
